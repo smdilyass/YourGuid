@@ -1,0 +1,142 @@
+<?php
+namespace App\Http\Controllers;
+use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryItemController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Main Pages
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/news', function () {
+    return view('news');
+})->name('news');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+// Authentication
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+// Categories
+Route::get('/transport', function () {
+    return view('categories.transport');
+})->name('transport');
+
+Route::get('/stadiums', function () {
+    return view('categories.stadiums');
+})->name('stadiums');
+
+Route::get('/hotels', function () {
+    return view('categories.hotels');
+})->name('hotels');
+
+Route::get('/culture', function () {
+    return view('categories.culture');
+})->name('culture');
+
+Route::get('/attractions', function () {
+    return view('categories.attractions');
+})->name('attractions');
+
+// Stadium Details
+Route::get('/stadiums/casablanca', function () {
+    return view('stadiums.casablanca');
+})->name('stadiums.casablanca');
+
+Route::get('/stadiums/casablanca/map', function () {
+    return view('stadiums.casablanca-map');
+})->name('stadiums.casablanca.map');
+
+Route::get('/stadiums/rabat', function () {
+    return view('stadiums.rabat');
+})->name('stadiums.rabat');
+
+Route::get('/stadiums/marrakech', function () {
+    return view('stadiums.marrakech');
+})->name('stadiums.marrakech');
+
+Route::get('/stadiums/tangier', function () {
+    return view('stadiums.tangier');
+})->name('stadiums.tangier');
+
+// News Detail
+Route::get('/news/casablanca-stadium-design', function () {
+    return view('news-detail');
+})->name('news.casablanca-stadium-design');
+
+// Placeholder Image Generator
+Route::get('/placeholder.svg', function () {
+    $width = request()->query('width', 300);
+    $height = request()->query('height', 200);
+    $text = request()->query('text', 'Placeholder');
+    
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'">
+        <rect width="100%" height="100%" fill="#198754" />
+        <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">'.$text.'</text>
+    </svg>';
+    
+    return response($svg)->header('Content-Type', 'image/svg+xml');
+});
+
+// API Endpoints
+Route::get('/api/stadiums', function () {
+    // Return stadium data
+    return response()->json([
+        'stadiums' => [
+            // Stadium data would go here
+        ]
+    ]);
+});
+
+Route::get('/api/matches', function () {
+    // Return match data
+    return response()->json([
+        'matches' => [
+            // Match data would go here
+        ]
+    ]);
+});
+
+// Routes Admin
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    
+    // Gestion des utilisateurs
+    Route::resource('users', UserController::class);
+    
+    // Gestion des catégories
+    Route::resource('categories', CategoryController::class);
+    
+    // Gestion des éléments de catégorie
+    Route::resource('categories.items', CategoryItemController::class)->shallow();
+});
+
+
