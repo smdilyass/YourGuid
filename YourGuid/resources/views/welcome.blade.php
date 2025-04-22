@@ -12,55 +12,88 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-VH45p3sk+AvqrsH1pjL3Z87WwJf1Wr2tA/Vi7F9M5wY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      <style>
+    /* map must have a height */
+    #stadium-map { height: 500px; width: 100%; border-radius: 12px; }
+  </style>
 </head>
 <body>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      const stadiums = [
+        { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
+        { name: 'Stade de Marrakech', city: 'Marrakech', lat: 31.6258, lng: -8.0345 },
+        { name: 'Stade Ibn Battouta', city: 'Tanger', lat: 35.7485, lng: -5.8340 },
+        { name: 'Stade Adrar', city: 'Agadir', lat: 30.3928, lng: -9.5479 },
+        { name: 'Complexe Moulay Abdellah', city: 'Rabat', lat: 34.0209, lng: -6.8416 },
+        { name: 'Stade de Fès', city: 'Fès', lat: 34.0274, lng: -5.0078 }
+      ];
+      stadiums.forEach(s => {
+        L.marker([s.lat, s.lng]).addTo(map)
+         .bindPopup(`<strong>${s.name}</strong><br>${s.city}`);
+      });
+    });
+  </script>
+
+<!-- Your custom JS -->
+<script src="{{ asset('js/scripts.js') }}"></script>
     <div class="min-vh-100 bg-white">
-        <!-- Fixed Countdown Timer -->
-        <div class="countdown-timer fixed-top w-100">
-            <div class="py-2 text-center text-white">
-                <div class="container">
-                    <div class="d-flex justify-content-center align-items-center gap-3">
-                        <p class="mb-0">FIFA World Cup 2030 Begins In:</p>
-                        <div class="d-flex gap-2">
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="days">00</div>
-                                <span class="countdown-label">Days</span>
+            <!-- Countdown Timer -->
+            <div class="countdown-timer py-3 text-center text-white bg-dark">
+                    <div class="container">
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                    <p class="mb-0">FIFA World Cup 2030 Begins In:</p>
+                                    <div class="d-flex gap-2">
+                                            <div class="d-flex flex-column align-items-center">
+                                                    <div class="countdown-box small-box" id="days">00</div>
+                                                    <span class="countdown-label">Days</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                    <div class="countdown-box small-box" id="hours">00</div>
+                                                    <span class="countdown-label">Hours</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                    <div class="countdown-box small-box" id="minutes">00</div>
+                                                    <span class="countdown-label">Mins</span>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                    <div class="countdown-box small-box" id="seconds">00</div>
+                                                    <span class="countdown-label">Secs</span>
+                                            </div>
+                                    </div>
                             </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="hours">00</div>
-                                <span class="countdown-label">Hours</span>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="minutes">00</div>
-                                <span class="countdown-label">Mins</span>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="seconds">00</div>
-                                <span class="countdown-label">Secs</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
             </div>
-        </div>
         
         <!-- Header -->
         <header class="header-bg">
-            <div class="container py-4">
+            <div class="container py-1">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center gap-3">
-                        <img src="/placeholder.svg?height=50&width=50" alt="Morocco 2030 Logo" class="logo-img">
+                        <img src="{{ asset('images/mstar.png?height=50&width=50') }}" alt="Morocco 2030 Logo" class="logo-img">
                         <h1 class="h4 text-white mb-0 fw-bold">Morocco 2030</h1>
                     </div>
-                    <nav class="d-none d-md-flex gap-4">
+                    <nav class="d-none d-md-flex gap-5">
                         <a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a>
                         <a href="{{ route('about') }}" class="text-white text-decoration-none">About</a>
                         <a href="{{ route('news') }}" class="text-white text-decoration-none">News</a>
                         <a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a>
                     </nav>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm d-none d-md-inline-block">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-light btn-sm text-danger d-none d-md-inline-block">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-success btn-sm text-success d-none d-md-inline-block">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-success btn-sm text-danger d-none d-md-inline-block">Register</a>
                         <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         </button>
@@ -87,8 +120,10 @@
         
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="position-absolute top-0 start-0 w-100 h-100">
-                <img src="/placeholder.svg?height=1080&width=1920" alt="Morocco Stadium" class="w-100 h-100 object-fit-cover opacity-30">
+            <div class="position-absolute top-0 start-0 w-100 h-100">             
+                <video class="w-100 h-100 object-fit-cover opacity-30" autoplay>
+                    <source src="{{ asset('images/Mo.mp4?height=1080&width=1920') }}" alt="Morocco Stadium"  type="video/mp4">
+                </video>
             </div>
             <div class="container h-100 position-relative">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center text-white h-100">
@@ -124,39 +159,37 @@
                     
                     <!-- Center Star Button -->
                     <button id="center-star" class="center-star-btn">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L14.4 8.4H21.1L15.6 12.8L18 19.2L12 14.8L6 19.2L8.4 12.8L2.9 8.4H9.6L12 2Z" fill="#FF0000" stroke="#FF0000"/>
-                        </svg>
-                    </button>
-                    
+        <i class="fas fa-star fa-3x" style="color: #FF0000;"></i>
+    </button>                    
                     <!-- Category Buttons -->
                     <div class="category-buttons">
                         <a href="{{ route('transport') }}" class="category-btn" data-position="top">
                             <div class="category-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus w-8 h-8"><path d="M8 6v6"></path><path d="M15 6v6"></path><path d="M2 12h19.6"></path><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"></path><circle cx="7" cy="18" r="2"></circle><path d="M9 18h5"></path><circle cx="16" cy="18" r="2"></circle></svg>                            </div>
+                                <i class="fas fa-bus-alt fa-2x" style="color: #3b82f6;"></i>
+                            </div>
                             <span>Transport</span>
                         </a>
                         <a href="{{ route('stadiums') }}" class="category-btn" data-position="right">
                             <div class="category-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8"/><path d="M21 4H3"/><path d="M12 4v16"/></svg>
+                                <i class="fas fa-landmark fa-2x" style="color: #f97316;"></i>
                             </div>
                             <span>Stadiums</span>
                         </a>
                         <a href="{{ route('hotels') }}" class="category-btn" data-position="bottom-right">
                             <div class="category-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h18"/><path d="M3 8h18"/><path d="M3 18h18"/></svg>
+                                <i class="fas fa-hotel fa-2x" style="color: #22c55e;"></i>
                             </div>
                             <span>Hotels</span>
                         </a>
                         <a href="{{ route('culture') }}" class="category-btn" data-position="bottom-left">
                             <div class="category-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                                <i class="fas fa-globe fa-2x" style="color: #a855f7;"></i>
                             </div>
                             <span>Culture</span>
                         </a>
                         <a href="{{ route('attractions') }}" class="category-btn" data-position="left">
                             <div class="category-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <i class="fas fa-map-marker-alt fa-2x" style="color: #ef4444;"></i>
                             </div>
                             <span>Attractions</span>
                         </a>
@@ -169,10 +202,8 @@
         <section id="map" class="py-5 bg-light">
             <div class="container">
                 <h2 class="text-center mb-5 fw-bold">Interactive Map</h2>
-                <div class="map-container mb-3" id="morocco-map">
-                    <!-- Map will be loaded here via JavaScript -->
-                    <img src="/placeholder.svg?height=500&width=1200&text=Interactive+Morocco+Map" alt="Map of Morocco" class="w-100 h-100 object-fit-cover">
-                </div>
+               <div class="map-container mb-3" id="stadium-map"></div>
+
                 <p class="text-center text-muted">Explore host cities, stadiums, and attractions across Morocco.</p>
             </div>
         </section>
@@ -184,7 +215,7 @@
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=400&text=Stadiums" class="card-img-top" alt="World-Class Stadiums">
+                            <img src="{{ asset('images/placeholder.svg?height=200&width=400&text=Stadiums') }}" class="card-img-top" alt="World-Class Stadiums">
                             <div class="card-body">
                                 <h5 class="card-title">World-Class Stadiums</h5>
                                 <p class="card-text">Explore Morocco's state-of-the-art stadiums built for the 2030 World Cup.</p>
@@ -194,7 +225,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=400&text=Culture" class="card-img-top" alt="Rich Cultural Heritage">
+                            <img src="{{ asset('images/placeholder.svg?height=200&width=400&text=Culture') }}" class="card-img-top" alt="Rich Cultural Heritage">
                             <div class="card-body">
                                 <h5 class="card-title">Rich Cultural Heritage</h5>
                                 <p class="card-text">Discover Morocco's unique blend of Arab, Berber, and European cultural influences.</p>
@@ -204,7 +235,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=400&text=Cuisine" class="card-img-top" alt="Moroccan Cuisine">
+                            <img src="{{ asset('images/placeholder.svg?height=200&width=400&text=Cuisine') }}" class="card-img-top" alt="Moroccan Cuisine">
                             <div class="card-body">
                                 <h5 class="card-title">Moroccan Cuisine</h5>
                                 <p class="card-text">Taste the flavors of Morocco with traditional dishes like tagine, couscous, and mint tea.</p>
@@ -214,7 +245,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=400&text=Attractions" class="card-img-top" alt="Must-Visit Attractions">
+                            <img src="{{ asset('images/placeholder.svg?height=200&width=400&text=Attractions') }}" class="card-img-top" alt="Must-Visit Attractions">
                             <div class="card-body">
                                 <h5 class="card-title">Must-Visit Attractions</h5>
                                 <p class="card-text">From the Sahara Desert to the Atlas Mountains, explore Morocco's natural wonders.</p>
@@ -353,7 +384,33 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        const stadiums = [
+            { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
+            { name: 'Stade de Marrakech', city: 'Marrakech', lat: 31.6258, lng: -8.0345 },
+            { name: 'Stade Ibn Battouta', city: 'Tanger', lat: 35.7485, lng: -5.8340 },
+            { name: 'Stade Adrar', city: 'Agadir', lat: 30.3928, lng: -9.5479 },
+            { name: 'Complexe Moulay Abdellah', city: 'Rabat', lat: 34.0209, lng: -6.8416 },
+            { name: 'Stade de Fès', city: 'Fès', lat: 34.0274, lng: -5.0078 }
+        ];
+
+        stadiums.forEach(stadium => {
+            L.marker([stadium.lat, stadium.lng])
+                .addTo(map)
+                .bindPopup(`<strong>${stadium.name}</strong><br>${stadium.city}`);
+        });
+    });
+
+
+    </script>
     <!-- Custom JS -->
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
