@@ -390,7 +390,7 @@
         var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© Ilyass SAMOUDI'
         }).addTo(map);
 
         const stadiums = [
