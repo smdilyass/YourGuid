@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +16,7 @@
     <link href="{{ asset('css/stadium-detail.css') }}" rel="stylesheet">
     @yield('additional_css')
 </head>
+
 <body>
     <div class="min-vh-100 bg-white">
         <!-- Fixed Countdown Timer -->
@@ -45,16 +47,17 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Header -->
         <header class="header-bg">
             <div class="container py-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center gap-3">
                         <a href="{{ route('home') }}" class="text-decoration-none">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Morocco 2030 Logo" class="logo-img">
+                            <img src="{{ asset('images/logo.png?height=50&width=50') }}" alt="Morocco 2030 Logo"
+                                class="logo-img">
                         </a>
-                        <h1 class="h4 text-white mb-0 fw-bold">Morocco 2030</h1>
+                        <h1 class="h4 text-white mb-0 fw-bold">YourGuide</h1>
                     </div>
                     <nav class="d-none d-md-flex gap-4">
                         <a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a>
@@ -63,10 +66,27 @@
                         <a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a>
                     </nav>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm d-none d-md-inline-block">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-light btn-sm text-danger d-none d-md-inline-block">Register</a>
-                        <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        @guest
+                            <a href="{{ route('login') }}"
+                                class="btn btn-outline-success btn-sm text-success d-none d-md-inline-block">Login</a>
+                            <a href="{{ route('register') }}"
+                                class="btn btn-success btn-sm text-danger d-none d-md-inline-block">Register</a>
+                        @endguest
+                        @auth
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-sm d-none d-md-inline-block">Logout</button>
+                            </form>
+                        @endauth
+                        <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#mobileMenu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -82,13 +102,21 @@
                     <a href="{{ route('news') }}" class="text-white text-decoration-none">News</a>
                     <a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a>
                     <div class="d-flex gap-2 mt-3">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-light btn-sm text-danger">Register</a>
+                        @guest
+                            <a href="{{ route('login') }}" class="btn btn-outline-success btn-sm text-success">Login</a>
+                            <a href="{{ route('register') }}" class="btn btn-success btn-sm text-danger">Register</a>
+                        @endguest
+                        @auth
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                            </form>
+                        @endauth
                     </div>
                 </nav>
             </div>
         </div>
-        
+
         <!-- Category Hero Banner -->
         <section class="category-hero" style="background-image: url('@yield('hero_image')')">
             <div class="category-hero-overlay"></div>
@@ -99,7 +127,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Category Navigation -->
         <div class="bg-light py-3 border-bottom">
             <div class="container">
@@ -111,7 +139,8 @@
                         </ol>
                     </nav>
                     <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="categoryDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Other Categories
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
@@ -125,14 +154,14 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Main Content -->
         <main class="py-5">
             <div class="container">
                 @yield('content')
             </div>
         </main>
-        
+
         <!-- Related Categories -->
         <section class="py-5 bg-light">
             <div class="container">
@@ -142,7 +171,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Footer -->
         <footer class="bg-success text-white py-5">
             <div class="container">
@@ -174,16 +203,37 @@
                         <h4 class="fw-bold mb-3">Connect</h4>
                         <div class="d-flex gap-3">
                             <a href="#" class="text-white" aria-label="Facebook">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
                             </a>
                             <a href="#" class="text-white" aria-label="Twitter">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                                </svg>
                             </a>
                             <a href="#" class="text-white" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                                </svg>
                             </a>
                             <a href="#" class="text-white" aria-label="YouTube">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                                    <path d="m10 15 5-3-5-3z" />
+                                </svg>
                             </a>
                         </div>
                     </div>
@@ -201,5 +251,5 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     @yield('additional_js')
 </body>
-</html>
 
+</html>

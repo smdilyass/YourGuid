@@ -13,7 +13,7 @@
                     <div class="card-body p-4">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            
+                            {{-- @method("POST") --}}
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
