@@ -17,5 +17,9 @@ Les fans de football, les touristes internationaux, et les habitants du Maroc in
 
 - Articles et conseils sur la culture locale et la gastronomie marocaine\n- Section FAQ pour répondre aux questions courantes des visiteurs\n- Intégration des réseaux sociaux pour partager des expériences et des moments passionnants 
 
+# sprint goal
+
+
+
 
 

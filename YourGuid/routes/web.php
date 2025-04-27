@@ -100,19 +100,6 @@ Route::get('/news/casablanca-stadium-design', function () {
     return view('news-detail');
 })->name('news.casablanca-stadium-design');
 
-// Placeholder Image Generator
-// Route::get('/placeholder.svg', function () {
-//     $width = request()->query('width', 300);
-//     $height = request()->query('height', 200);
-//     $text = request()->query('text', 'Placeholder');
-    
-//     $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'">
-//         <rect width="100%" height="100%" fill="#198754" />
-//         <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">'.$text.'</text>
-//     </svg>';
-    
-//     return response($svg)->header('Content-Type', 'image/svg+xml');
-// });
 
 // API Endpoints
 Route::get('/api/stadiums', function () {
