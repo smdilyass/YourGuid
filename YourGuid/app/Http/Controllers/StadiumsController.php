@@ -2,65 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\stadiums;
-use App\Http\Requests\StorestadiumsRequest;
-use App\Http\Requests\UpdatestadiumsRequest;
+use Illuminate\Http\Request;
 
 class StadiumsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the stadiums.
      */
     public function index()
     {
-        //
-    }
+        // Example stadiums locations data
+        $stadiums = [
+            ['name' => 'Stade Mohammed V', 'city' => 'Casablanca', 'lat' => 33.573, 'lng' => -7.589],
+            ['name' => 'Stade Moulay Abdellah', 'city' => 'Rabat', 'lat' => 34.020, 'lng' => -6.841],
+            ['name' => 'Stade de Marrakech', 'city' => 'Marrakech', 'lat' => 31.629, 'lng' => -8.008],
+            ['name' => 'Stade Ibn Batouta', 'city' => 'Tangier', 'lat' => 35.759, 'lng' => -5.834],
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorestadiumsRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(stadiums $stadiums)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(stadiums $stadiums)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatestadiumsRequest $request, stadiums $stadiums)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(stadiums $stadiums)
-    {
-        //
+        return view('categories.stadiums', ['stadiums' => $stadiums]);
     }
 }
