@@ -79,8 +79,7 @@
         </div>
         
         <div class="map-container mb-3" id="hotel-map">
-            <!-- Map will be loaded here via JavaScript -->
-            <img src="/placeholder.svg?height=500&width=1200&text=Interactive+Hotel+Map" alt="Hotel Map" class="w-100 h-100 object-fit-cover">
+            @include('partials.leaflet-map', ['locations' => $hotels])
         </div>
         <p class="text-muted">Interactive map showing hotel locations across Morocco's World Cup host cities.</p>
     </section>
@@ -297,7 +296,7 @@
                 <img src="/placeholder.svg?height=150&width=300&text=Transport" class="card-img-top" alt="Transport">
                 <div class="card-body">
                     <div class="category-icon-large transport mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 7v10"/><path d="M17 7v10"/></svg>
+                        <i class="fas fa-bus fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Transport</h5>
                 </div>
@@ -310,7 +309,7 @@
                 <img src="/placeholder.svg?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
                 <div class="card-body">
                     <div class="category-icon-large stadiums mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8"/><path d="M21 4H3"/><path d="M12 4v16"/></svg>
+                        <i class="fas fa-futbol fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Stadiums</h5>
                 </div>
@@ -323,7 +322,7 @@
                 <img src="/placeholder.svg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
                 <div class="card-body">
                     <div class="category-icon-large culture mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                        <i class="fas fa-globe fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Culture</h5>
                 </div>
@@ -336,7 +335,7 @@
                 <img src="/placeholder.svg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
                 <div class="card-body">
                     <div class="category-icon-large attractions mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <i class="fas fa-map-marker-alt fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Attractions</h5>
                 </div>

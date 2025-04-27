@@ -28,27 +28,16 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            const stadiums = [
-                { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
-                { name: 'Stade de Marrakech', city: 'Marrakech', lat: 31.6258, lng: -8.0345 },
-                { name: 'Stade Ibn Battouta', city: 'Tanger', lat: 35.7485, lng: -5.8340 },
-                { name: 'Stade Adrar', city: 'Agadir', lat: 30.3928, lng: -9.5479 },
-                { name: 'Complexe Moulay Abdellah', city: 'Rabat', lat: 34.0209, lng: -6.8416 },
-                { name: 'Stade de Fès', city: 'Fès', lat: 34.0274, lng: -5.0078 }
-            ];
-            stadiums.forEach(s => {
-                L.marker([s.lat, s.lng]).addTo(map)
-                    .bindPopup(`<strong>${s.name}</strong><br>${s.city}`);
-            });
-        });
-    </script>
+    @php
+        $stadiums = [
+            ['name' => 'Stade Mohammed V', 'city' => 'Casablanca', 'lat' => 33.5883, 'lng' => -7.6114],
+            ['name' => 'Stade de Marrakech', 'city' => 'Marrakech', 'lat' => 31.6258, 'lng' => -8.0345],
+            ['name' => 'Stade Ibn Battouta', 'city' => 'Tanger', 'lat' => 35.7485, 'lng' => -5.8340],
+            ['name' => 'Stade Adrar', 'city' => 'Agadir', 'lat' => 30.3928, 'lng' => -9.5479],
+            ['name' => 'Complexe Moulay Abdellah', 'city' => 'Rabat', 'lat' => 34.0209, 'lng' => -6.8416],
+            ['name' => 'Stade de Fès', 'city' => 'Fès', 'lat' => 34.0274, 'lng' => -5.0078],
+        ];
+    @endphp
 
     <!-- Your custom JS -->
     <script src="{{ asset('js/scripts.js') }}"></script>
@@ -111,13 +100,7 @@
                         @endauth
                         <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse"
                             data-bs-target="#mobileMenu">
-                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="3" y1="12" x2="21" y2="12"></line>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg> --}}
+                            <i class="fas fa-bars fa-lg"></i>
                         </button>
                     </div>
                 </div>
@@ -173,12 +156,7 @@
             </div>
             <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
                 <a href="#categories" class="text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="bounce">
-                        <path d="M7 13l5 5 5-5" />
-                        <path d="M7 6l5 5 5-5" />
-                    </svg>
+                    <i class="fas fa-chevron-down fa-3x bounce"></i>
                 </a>
             </div>
         </section>
@@ -414,39 +392,16 @@
                         <h4 class="fw-bold mb-3">Connect</h4>
                         <div class="d-flex gap-3">
                             <a href="#" class="text-white" aria-label="Facebook">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                                </svg>
+                              <i class="fab fa-facebook fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="Twitter">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4  stroke-linecap=" round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                                </svg>
+                                <i class="fab fa-twitter fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                                </svg>
+                            <i class="fab fa-instagram fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="YouTube">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-                                    <path d="m10 15 5-3-5-3z" />
-                                </svg>
+                            <i class="fab fa-youtube fa-lg"></i>
                             </a>
                         </div>
                     </div>
@@ -458,36 +413,5 @@
         </footer>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© Ilyass SAMOUDI'
-            }).addTo(map);
-
-            const stadiums = [
-                { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
-                { name: 'Stade de Marrakech', city: 'Marrakech', lat: 31.6258, lng: -8.0345 },
-                { name: 'Stade Ibn Battouta', city: 'Tanger', lat: 35.7485, lng: -5.8340 },
-                { name: 'Stade Adrar', city: 'Agadir', lat: 30.3928, lng: -9.5479 },
-                { name: 'Complexe Moulay Abdellah', city: 'Rabat', lat: 34.0209, lng: -6.8416 },
-                { name: 'Stade de Fès', city: 'Fès', lat: 34.0274, lng: -5.0078 }
-            ];
-
-            stadiums.forEach(stadium => {
-                L.marker([stadium.lat, stadium.lng])
-                    .addTo(map)
-                    .bindPopup(`<strong>${stadium.name}</strong><br>${stadium.city}`);
-            });
-        });
-
-
-    </script>
-    <!-- Custom JS -->
-    <script src="{{ asset('js/scripts.js') }}"></script>
+ 
 </body>
-
-</html>

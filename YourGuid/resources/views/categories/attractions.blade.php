@@ -36,8 +36,7 @@
     <section class="mb-5">
         <h2 class="section-title">Attractions Map</h2>
         <div class="map-container mb-3" id="attractions-map">
-            <!-- Map will be loaded here via JavaScript -->
-            <img src="/placeholder.svg?height=500&width=1200&text=Interactive+Attractions+Map" alt="Attractions Map" class="w-100 h-100 object-fit-cover">
+            @include('partials.leaflet-map', ['locations' => $attractions])
         </div>
         <p class="text-muted">Interactive map showing major attractions across Morocco, with filters for different types of experiences.</p>
     </section>

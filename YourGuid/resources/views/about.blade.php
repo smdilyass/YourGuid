@@ -12,7 +12,7 @@
                     <p class="lead">Your comprehensive guide to the FIFA World Cup 2030 in Morocco.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="images/guidem.png?height=400&width=600&text=Morocco+2030" alt="Morocco 2030" class="img-fluid rounded shadow">
+                    <img src="images/logo.png?height=400&width=600&text=Morocco+2030" alt="Morocco 2030" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -175,36 +175,5 @@
     </section>
 
     <!-- Partners Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="fw-bold text-center mb-5">Our Partners</h2>
-            
-            <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 justify-content-center">
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+1" alt="Partner 1" class="img-fluid mb-3">
-                    <p class="fw-bold">FIFA</p>
-                </div>
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+2" alt="Partner 2" class="img-fluid mb-3">
-                    <p class="fw-bold">Morocco Tourism</p>
-                </div>
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+3" alt="Partner 3" class="img-fluid mb-3">
-                    <p class="fw-bold">Royal Air Maroc</p>
-                </div>
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+4" alt="Partner 4" class="img-fluid mb-3">
-                    <p class="fw-bold">ONCF Railways</p>
-                </div>
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+5" alt="Partner 5" class="img-fluid mb-3">
-                    <p class="fw-bold">Moroccan Hotels Association</p>
-                </div>
-                <div class="col text-center">
-                    <img src="/placeholder.svg?height=100&width=100&text=Partner+6" alt="Partner 6" class="img-fluid mb-3">
-                    <p class="fw-bold">Ministry of Culture</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 @endsection
