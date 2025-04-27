@@ -26,9 +26,16 @@ class AuthController extends Controller
 
         // Attempt to log in
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
+
             $request->session()->regenerate();
-            // Redirect to intended page or home
-            return redirect('/admin/dashboard');
+
+            // Check if user is admin and redirect accordingly
+            
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('home');
+            }
         }
 
         // Failure — redirect back with error
