@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryItem;
+
 abstract class Controller
 {
     public function show()
 {
-    $dishes = Dish::all(); // Or any other query to get your dishes
-    return view('culture', compact('dishes'));
+    $dishes = CategoryItem::all(); // Or any other query to get your dishes
+    return view('categories.culture', compact('dishes'));
 }
 }
