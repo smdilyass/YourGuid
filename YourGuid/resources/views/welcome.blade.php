@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/star-navigation.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-VH45p3sk+AvqrsH1pjL3Z87WwJf1Wr2tA/Vi7F9M5wY=" crossorigin="" />
@@ -20,7 +21,6 @@
 
     <style>
         /* map */
-    
     </style>
 </head>
 
@@ -72,7 +72,8 @@
                     <div class="d-flex align-items-center gap-3">
                         <img src="{{ asset('images/logo.png?height=50&width=50') }}" alt="Morocco 2030 Logo"
                             class="logo-img">
-                        <h1 class="h4 text-white mb-0 fw-bold"><span class="text-success">Your</span><span class="text-danger" style="font-family: 'Permanent Marker',cursive;">Guide</h1>
+                        <h1 class="h4 text-white mb-0 fw-bold"><span class="text-success">Your</span><span
+                                class="text-danger" style="font-family: 'Permanent Marker',cursive;">Guide</h1>
                     </div>
                     <nav class="d-none d-md-flex gap-5">
                         <a href="{{ route('home') }}"
@@ -94,8 +95,8 @@
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit"
-                                    class="btn btn-outline-warning btn-sm d-none d-md-inline-block">Logout</button>
+                                <button type="submit" class="btn btn-danger btn-sm d-none d-md-inline-block "><i
+                                        class="fas fa-sign-out-alt fa-lg"></i>Logout</button>
                             </form>
                         @endauth
                         <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse"
@@ -141,7 +142,7 @@
             </div>
             <div class="container h-100 position-relative">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center text-white h-100">
-                    <h1 class="display-4 fw-bold mb-4">Welcome to Morocco 2030</h1>
+                    <h1 class="display-4 fw-bold mb-4">Welcome to YourGuid</h1>
                     <p class="fs-4 mb-4 mx-auto" style="max-width: 800px;">Your comprehensive guide to the FIFA World
                         Cup 2030 in Morocco</p>
                     <div class="d-flex gap-3">
@@ -174,40 +175,24 @@
 
                     <!-- Center Star Button -->
                     <button id="center-star" class="center-star-btn">
-                        <i class="fas fa-star fa-3x" style="color: #FF0000;"></i>
+                        <i class="fas fa-star fa-3x" style="color: #198754;"></i>
                     </button>
                     <!-- Category Buttons -->
                     <div class="category-buttons">
-                        <a href="{{ route('transport') }}" class="category-btn" data-position="top">
-                            <div class="category-icon">
-                                <i class="fas fa-bus-alt fa-2x" style="color: #3b82f6;"></i>
-                            </div>
-                            <span>Transport</span>
-                        </a>
-                        <a href="{{ route('stadiums') }}" class="category-btn" data-position="right">
-                            <div class="category-icon">
-                                <i class="fas fa-landmark fa-2x" style="color: #f97316;"></i>
-                            </div>
-                            <span>Stadiums</span>
-                        </a>
-                        <a href="{{ route('hotels') }}" class="category-btn" data-position="bottom-right">
-                            <div class="category-icon">
-                                <i class="fas fa-hotel fa-2x" style="color: #22c55e;"></i>
-                            </div>
-                            <span>Hotels</span>
-                        </a>
-                        <a href="{{ route('culture') }}" class="category-btn" data-position="bottom-left">
-                            <div class="category-icon">
-                                <i class="fas fa-globe fa-2x" style="color: #a855f7;"></i>
-                            </div>
-                            <span>Culture</span>
-                        </a>
-                        <a href="{{ route('attractions') }}" class="category-btn" data-position="left">
-                            <div class="category-icon">
-                                <i class="fas fa-map-marker-alt fa-2x" style="color: #ef4444;"></i>
-                            </div>
-                            <span>Attractions</span>
-                        </a>
+                        @foreach ($categories as $category)
+                            <a href="{{ route(strtolower($category->slug)) }}" class="category-btn"
+                                data-position="{{ $category->position ?? 0 }}">
+                                <div class="category-icon">
+                                    <i class="{{ $category->icon}} fa-3x"
+                                    @php
+                                        $arry = ['red', 'green', 'blue', 'yellow', 'orange', 'purple','black','pink','tomato','indigo','violet','navy'];
+                                        $color = $arry[array_rand($arry)];
+                                    @endphp
+                                        style="color: {{ $color}};"></i>
+                                </div>
+                                <span>{{ $category->name }}</span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -381,27 +366,26 @@
                     <div class="col-md-3">
                         <h4 class="fw-bold mb-3">Categories</h4>
                         <ul class="list-unstyled footer-links">
-                            <li class="mb-2"><a href="{{ route('transport') }}">Transport</a></li>
-                            <li class="mb-2"><a href="{{ route('stadiums') }}">Stadiums</a></li>
-                            <li class="mb-2"><a href="{{ route('hotels') }}">Hotels</a></li>
-                            <li class="mb-2"><a href="{{ route('culture') }}">Culture</a></li>
-                            <li class="mb-2"><a href="{{ route('attractions') }}">Attractions</a></li>
+                            @foreach ($categories as $category)
+                                <li class="mb-2"><a
+                                        href="{{ route(strtolower($category->slug)) }}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-3">
                         <h4 class="fw-bold mb-3">Connect</h4>
                         <div class="d-flex gap-3">
                             <a href="#" class="text-white" aria-label="Facebook">
-                              <i class="fab fa-facebook fa-lg"></i>
+                                <i class="fab fa-facebook fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="Twitter">
                                 <i class="fab fa-twitter fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-lg"></i>
+                                <i class="fab fa-instagram fa-lg"></i>
                             </a>
                             <a href="#" class="text-white" aria-label="YouTube">
-                            <i class="fab fa-youtube fa-lg"></i>
+                                <i class="fab fa-youtube fa-lg"></i>
                             </a>
                         </div>
                     </div>
@@ -413,5 +397,5 @@
         </footer>
     </div>
 
- 
+
 </body>
