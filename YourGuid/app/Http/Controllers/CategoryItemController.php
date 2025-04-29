@@ -53,7 +53,7 @@ class CategoryItemController extends Controller
      * Display the specified resource.
      * Show a single category item by id.
      */
-    public function show($id)
+    public function showItem($id)
     {
         // Find the category item by id or fail with 404
         $categoryItem = CategoryItem::findOrFail($id);
