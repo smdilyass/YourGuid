@@ -53,11 +53,12 @@ class CategoryItemController extends Controller
      * Display the specified resource.
      * Show a single category item by id.
      */
-    // public function show($id)
-    // {
-    //     // This method signature is updated to be compatible with base Controller class
-    //     abort(404);
-    //     return view('admin.category-items.show', compact('categoryItem'));
-    // }
-    
+    public function show($id)
+    {
+        // Find the category item by id or fail with 404
+        $categoryItem = CategoryItem::findOrFail($id);
+
+        // Return the category item view with the data
+        return view('category_items.show', compact('categoryItem'));
+    }
 }
