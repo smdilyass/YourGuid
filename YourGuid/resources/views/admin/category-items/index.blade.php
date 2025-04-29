@@ -53,14 +53,14 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->slug }}</td>
-                                <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
+                                <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>   
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="{{ route('admin.categories.items.edit', [$category, $item]) }}" class="btn btn-sm btn-outline-primary btn-icon" title="Modifier">
+                                        <a href="{{ route('admin.categories.items.update', [$category, $item]) }}" class="btn btn-sm btn-outline-primary btn-icon" title="Modifier">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         
-                                        <form action="{{ route('admin.categories.items.destroy', [$category, $item]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                        <form action="{{ route('admin.categories.items.delete', [$category, $item]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger btn-icon" title="Supprimer">

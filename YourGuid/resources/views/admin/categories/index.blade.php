@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3">Gestion des catégories</h1>
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus me-1"></i> Nouvelle catégorie
+            <i class="fas fa-eye me-1"></i> Nouvelle catégorie
         </a>
     </div>
     
