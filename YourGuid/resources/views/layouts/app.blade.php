@@ -81,10 +81,8 @@
                     <div class="d-flex align-items-center gap-3">
                         <img src="{{ asset('images/logo.png?height=50&width=50') }}" alt="Morocco 2030 Logo"
                             class="logo-img">
-                        <h1 class="h4 text-white mb-0 fw-bold">
-                            <span class="text-success">Your</span>
-                            <span class="text-danger" style="font-family: 'Permanent Marker';">Guide</span>
-                        </h1>
+                       <h1 class="h4 text-white mb-0 fw-bold"><span class="text-success">Your</span><span
+                                class="text-danger" style="font-family: 'Permanent Marker',cursive;">Guide</h1>
                     </div>
                     <nav class="d-none d-md-flex gap-5">
                         <a href="{{ route('home') }}"
@@ -107,7 +105,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="btn btn-outline-warning btn-sm d-none d-md-inline-block">Logout</button>
+                                    class="btn btn-danger btn-sm d-none d-md-inline-block"><i class="fas fa-sign-out-alt fa-lg"></i>Logout</button>
                             </form>
                         @endauth
                         <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse"
