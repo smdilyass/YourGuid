@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Admin\UserController;
 // use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -21,10 +23,11 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+use App\Http\Controllers\HomeController;
+use App\Models\CategoryItem;
+
 // Main Pages
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
@@ -73,6 +76,11 @@ Route::get('/culture', function () {
 Route::get('/attractions', function () {
     return view('categories.attractions');
 })->name('attractions');
+
+// Route::get('/show',function(){
+//     return view('categories.show');
+// })->name('show');
+
 
 // Stadium Details
 Route::get('/stadiums/casablanca', function () {
@@ -124,18 +132,23 @@ Route::get('/api/matches', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Gestion des utilisateurs
     Route::resource('users', UserController::class);
-    
+
     // Gestion des catégories
     Route::resource('categories', CategoryController::class);
+    Route::post('categories/create', [CategoryController::class, 'create'])->name('categories.create');
     
+
     // Gestion des éléments de catégorie
     Route::resource('categories.items', CategoryItemController::class)->shallow();
+    Route::get('/categories/items/index', [CategoryItemController::class, 'index'])->name('categories.items.create.index');
+    Route::post('/categories/items/update', [CategoryItemController::class, 'update'])->name('categories.items.update');
+    Route::delete('/categories/items/delete', [CategoryItemController::class, 'delete'])->name('categories.items.delete');
+    Route::get('admin/categories/{category}/items', [CategoryItemController::class, 'index'])
+     ->name('admin.categories.items.index');
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-
