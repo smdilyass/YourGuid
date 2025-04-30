@@ -2,13 +2,16 @@
 
 @section('title', 'Hotels')
 
-@section('category_title', 'Accommodation')
+@section('category_title', 'Hotels')
+
 @section('category_subtitle', 'Find the perfect place to stay during the 2030 World Cup')
+
 @section('hero_image', 'images/hotel.jpg?height=800&width=1600&text=Hotels')
 
 @section('content')
     <!-- Introduction -->
     <section class="mb-5">
+
         <h2 class="section-title">Accommodation Options</h2>
         <div class="row">
             <div class="col-md-8">
@@ -79,7 +82,7 @@
         </div>
         
         <div class="map-container mb-3" id="hotel-map">
-            @include('partials.leaflet-map', ['locations' => $hotels])
+            {{-- @include('partials.leaflet-map', ['locations' => $hotels]) --}}
         </div>
         <p class="text-muted">Interactive map showing hotel locations across Morocco's World Cup host cities.</p>
     </section>
@@ -91,7 +94,7 @@
             <!-- Luxury Hotels -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Luxury+Hotels" class="card-img-top" alt="Luxury Hotels in Morocco">
+                    <img src="images/hotel.jpg?height=50&width=50" class="card-img-top" alt="Luxury Hotels in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Luxury Hotels</h3>
                         <p class="card-text">Morocco's luxury hotels offer world-class amenities, exceptional service, and stunning architecture. Many feature traditional Moroccan design elements combined with modern luxury, providing a truly unique experience.</p>
@@ -106,7 +109,7 @@
             <!-- Traditional Riads -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Traditional+Riads" class="card-img-top" alt="Traditional Riads in Morocco">
+                    <img src="images/hotel.jpg?height=300&width=600&text=Traditional+Riads" class="card-img-top" alt="Traditional Riads in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Traditional Riads</h3>
                         <p class="card-text">Experience authentic Moroccan hospitality in a traditional riad. These historic houses with interior courtyards and gardens offer a peaceful retreat in the heart of Morocco's bustling medinas.</p>
@@ -121,7 +124,7 @@
             <!-- Boutique Hotels -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Boutique+Hotels" class="card-img-top" alt="Boutique Hotels in Morocco">
+                    <img src="images/hotel.jpg?height=300&width=600&text=Boutique+Hotels" class="card-img-top" alt="Boutique Hotels in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Boutique Hotels</h3>
                         <p class="card-text">Morocco's boutique hotels offer unique character, personalized service, and stylish design. Often located in historic buildings or scenic locations, they provide an intimate and memorable stay.</p>
@@ -136,7 +139,7 @@
             <!-- Vacation Rentals -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Vacation+Rentals" class="card-img-top" alt="Vacation Rentals in Morocco">
+                    <img src="images/hotel.jpg?height=300&width=600&text=Vacation+Rentals" class="card-img-top" alt="Vacation Rentals in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Vacation Rentals</h3>
                         <p class="card-text">For groups or families, vacation rentals offer space, privacy, and the comforts of home. Options range from modern apartments in city centers to traditional houses in historic neighborhoods.</p>
@@ -151,7 +154,7 @@
             <!-- Budget Accommodations -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Budget+Accommodations" class="card-img-top" alt="Budget Accommodations in Morocco">
+                    <img src="images/hotel.jpg?height=300&width=600&text=Budget+Accommodations" class="card-img-top" alt="Budget Accommodations in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Budget Accommodations</h3>
                         <p class="card-text">Travelers on a budget will find plenty of affordable options including hostels, guesthouses, and budget hotels. Many offer comfortable accommodations with basic amenities at reasonable prices.</p>
@@ -166,7 +169,7 @@
             <!-- Fan Villages -->
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Fan+Villages" class="card-img-top" alt="Fan Villages in Morocco">
+                    <img src="images/hotel.jpg?height=300&width=600&text=Fan+Villages" class="card-img-top" alt="Fan Villages in Morocco">
                     <div class="card-body">
                         <h3 class="card-title h5">Fan Villages</h3>
                         <p class="card-text">Special accommodation villages will be set up for the World Cup, offering affordable options and a festive atmosphere. These villages will feature amenities like food courts, entertainment, and transport to stadiums.</p>
@@ -188,7 +191,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/placeholder.svg?height=200&width=200&text=Casablanca" class="img-fluid rounded-start h-100 object-fit-cover" alt="Casablanca">
+                            <img src="images/hotel.jpg?height=200&width=200&text=Casablanca" class="img-fluid rounded-start h-100 object-fit-cover" alt="Casablanca">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -204,7 +207,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/placeholder.svg?height=200&width=200&text=Marrakech" class="img-fluid rounded-start h-100 object-fit-cover" alt="Marrakech">
+                            <img src="images/hotel.jpg?height=200&width=200&text=Marrakech" class="img-fluid rounded-start h-100 object-fit-cover" alt="Marrakech">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -220,7 +223,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/placeholder.svg?height=200&width=200&text=Rabat" class="img-fluid rounded-start h-100 object-fit-cover" alt="Rabat">
+                            <img src="images/hotel.jpg?height=200&width=200&text=Rabat" class="img-fluid rounded-start h-100 object-fit-cover" alt="Rabat">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -236,7 +239,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="/placeholder.svg?height=200&width=200&text=Tangier" class="img-fluid rounded-start h-100 object-fit-cover" alt="Tangier">
+                            <img src="images/hotel.jpg?height=200&width=200&text=Tangier" class="img-fluid rounded-start h-100 object-fit-cover" alt="Tangier">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -293,7 +296,7 @@
     <div class="col-md-4 col-lg-2">
         <a href="{{ route('transport') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Transport" class="card-img-top" alt="Transport">
+                <img src="images/transport-icon.png?height=150&width=300&text=Transport" class="card-img-top" alt="Transport">
                 <div class="card-body">
                     <div class="category-icon-large transport mx-auto">
                         <i class="fas fa-bus fa-2x text-white"></i>
@@ -306,10 +309,10 @@
     <div class="col-md-4 col-lg-2">
         <a href="{{ route('stadiums') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
+                <img src="images/stadium.avif?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
                 <div class="card-body">
                     <div class="category-icon-large stadiums mx-auto">
-                        <i class="fas fa-futbol fa-2x text-white"></i>
+                        <i class="fas fa-home fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Stadiums</h5>
                 </div>
@@ -319,7 +322,7 @@
     <div class="col-md-4 col-lg-2">
         <a href="{{ route('culture') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
+                <img src="images/culture.jpg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
                 <div class="card-body">
                     <div class="category-icon-large culture mx-auto">
                         <i class="fas fa-globe fa-2x text-white"></i>
@@ -332,7 +335,7 @@
     <div class="col-md-4 col-lg-2">
         <a href="{{ route('attractions') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
+                <img src="images/Attraction.jpeg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
                 <div class="card-body">
                     <div class="category-icon-large attractions mx-auto">
                         <i class="fas fa-map-marker-alt fa-2x text-white"></i>
@@ -344,13 +347,5 @@
     </div>
 @endsection
 
-@section('additional_js')
-<script>
-    // This would be replaced with actual map implementation
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Hotel map would be initialized here');
-        // Initialize map with hotel locations
-    });
-</script>
-@endsection
+
 
