@@ -12,81 +12,106 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stadium-detail.css') }}" rel="stylesheet">
+    @yield('additional_css')
+    <style>
+        /* Navbar link hover star */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            color: rgb(33, 169, 83) !important;
+            /* Bootstrap warning color */
+        }
+
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            content: "\f005";
+            /* Font Awesome star unicode */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            color: rgb(33, 169, 83);
+            font-size: 0.8rem;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link::after {
+            opacity: 0;
+        }
+    </style>
     @yield('additional_css')
 </head>
 
 <body>
     <div class="min-vh-100 bg-white">
-        <!-- Fixed Countdown Timer -->
-        <div class="countdown-timer fixed-top w-100">
-            <div class="py-2 text-center text-white">
-                <div class="container">
-                    <div class="d-flex justify-content-center align-items-center gap-3">
-                        <p class="mb-0">FIFA World Cup 2030 Begins In:</p>
-                        <div class="d-flex gap-2">
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="days">00</div>
-                                <span class="countdown-label">Days</span>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="hours">00</div>
-                                <span class="countdown-label">Hours</span>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="minutes">00</div>
-                                <span class="countdown-label">Mins</span>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="countdown-box" id="seconds">00</div>
-                                <span class="countdown-label">Secs</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Countdown Timer -->
+        <div class="countdown-timer">
+            <div class="countdown-inner">
+                <div class="countdown-segment">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-segment">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hrs</div>
+                </div>
+                <div class="countdown-segment">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Min</div>
+                </div>
+                <div class="countdown-segment">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Sec</div>
                 </div>
             </div>
         </div>
-
         <!-- Header -->
         <header class="header-bg">
-            <div class="container py-4">
+            <div class="container py-1">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center gap-3">
-                        <a href="{{ route('home') }}" class="text-decoration-none">
-                            <img src="{{ asset('images/logo.png?height=50&width=50') }}" alt="Morocco 2030 Logo"
-                                class="logo-img">
-                        </a>
-                        <h1 class="h4 text-white mb-0 fw-bold">YourGuide</h1>
+                        <img src="{{ asset('images/logo.png?height=50&width=50') }}" alt="Morocco 2030 Logo"
+                            class="logo-img">
+                        <h1 class="h4 text-white mb-0 fw-bold"><span class="text-success">Your</span><span
+                                class="text-danger" style="font-family: 'Permanent Marker',cursive;">Guide</h1>
                     </div>
-                    <nav class="d-none d-md-flex gap-4">
-                        <a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a>
-                        <a href="{{ route('about') }}" class="text-white text-decoration-none">About</a>
-                        <a href="{{ route('news') }}" class="text-white text-decoration-none">News</a>
-                        <a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a>
+                    <nav class="d-none d-md-flex gap-5">
+                        <a href="{{ route('home') }}"
+                            class="nav-link text-white text-decoration-none {{ Request::routeIs('home') ? 'active' : '' }}">Home</a>
+                        <a href="{{ route('about') }}"
+                            class="nav-link text-white text-decoration-none {{ Request::routeIs('about') ? 'active' : '' }}">About</a>
+                        <a href="{{ route('news') }}"
+                            class="nav-link text-white text-decoration-none {{ Request::routeIs('news') ? 'active' : '' }}">News</a>
+                        <a href="{{ route('contact') }}"
+                            class="nav-link text-white text-decoration-none {{ Request::routeIs('contact') ? 'active' : '' }}">Contact</a>
                     </nav>
                     <div class="d-flex gap-2">
                         @guest
                             <a href="{{ route('login') }}"
-                                class="btn btn-outline-success btn-sm text-success d-none d-md-inline-block">Login</a>
+                                class="btn btn-outline-success btn-sm text-white d-none d-md-inline-block">Login</a>
                             <a href="{{ route('register') }}"
-                                class="btn btn-success btn-sm text-danger d-none d-md-inline-block">Register</a>
+                                class="btn btn-success btn-sm text-black d-none d-md-inline-block">Register</a>
                         @endguest
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-danger btn-sm d-none d-md-inline-block">Logout</button>
+                                <button type="submit" class="btn btn-danger btn-sm d-none d-md-inline-block"><i
+                                        class="fas fa-sign-out-alt fa-lg"></i>Logout</button>
                             </form>
                         @endauth
                         <button class="btn d-md-none text-white" type="button" data-bs-toggle="collapse"
                             data-bs-target="#mobileMenu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="3" y1="12" x2="21" y2="12"></line>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg>
                         </button>
                     </div>
                 </div>
@@ -103,8 +128,8 @@
                     <a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a>
                     <div class="d-flex gap-2 mt-3">
                         @guest
-                            <a href="{{ route('login') }}" class="btn btn-outline-success btn-sm text-success">Login</a>
-                            <a href="{{ route('register') }}" class="btn btn-success btn-sm text-danger">Register</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Login</a>
+                            <a href="{{ route('register') }}" class="btn btn-light btn-sm text-danger">Register</a>
                         @endguest
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
@@ -132,12 +157,6 @@
         <div class="bg-light py-3 border-bottom">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@yield('category_title')</li>
-                        </ol>
-                    </nav>
                     <div class="dropdown">
                         <button class="btn btn-outline-success dropdown-toggle" type="button" id="categoryDropdown"
                             data-bs-toggle="dropdown" aria-expanded="false">
