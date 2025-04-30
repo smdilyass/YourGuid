@@ -1,16 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>@yield('title', 'Admin Dashboard')</title>
+
     <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
     <!-- Font Awesome -->
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
     <!-- Custom CSS -->
+
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
+
     @yield('additional_css')
+
 </head>
 <body>
     <div class="d-flex flex-column flex-lg-row min-vh-100">
@@ -30,7 +43,7 @@
                 <a class="nav-link text-white py-2" href="{{ route('admin.categories.index') }}">
                     <i class="fas fa-folder me-2"></i> Catégories
                 </a>
-                <a class="nav-link text-white py-2" href="#">
+                <a class="nav-link text-white py-2" href="{{ route('admin.categories.index') }}">
                     <i class="fas fa-list me-2"></i> Éléments
                 </a>
             </nav>
