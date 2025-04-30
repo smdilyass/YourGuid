@@ -230,12 +230,25 @@
 
 @section('related_categories')
     <div class="col-md-4 col-lg-2">
+        <a href="{{ route('transport') }}" class="related-category">
+            <div class="card text-center">
+                <img src="images/transport-icon.png?height=150&width=300&text=Transport" class="card-img-top" alt="Transport">
+                <div class="card-body">
+                    <div class="category-icon-large transport mx-auto">
+                        <i class="fas fa-bus fa-2x text-white"></i>
+                    </div>
+                    <h5 class="card-title">Transport</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4 col-lg-2">
         <a href="{{ route('stadiums') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
+                <img src="images/stadium.avif?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
                 <div class="card-body">
                     <div class="category-icon-large stadiums mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8"/><path d="M21 4H3"/><path d="M12 4v16"/></svg>
+                        <i class="fas fa-home fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Stadiums</h5>
                 </div>
@@ -243,25 +256,12 @@
         </a>
     </div>
     <div class="col-md-4 col-lg-2">
-        <a href="{{ route('hotels') }}" class="related-category">
-            <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Hotels" class="card-img-top" alt="Hotels">
-                <div class="card-body">
-                    <div class="category-icon-large hotels mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h18"/><path d="M3 8h18"/><path d="M3 18h18"/></svg>
-                    </div>
-                    <h5 class="card-title">Hotels</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-md-4 col-lg-2">
         <a href="{{ route('culture') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
+                <img src="images/culture.jpg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
                 <div class="card-body">
                     <div class="category-icon-large culture mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                        <i class="fas fa-globe fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Culture</h5>
                 </div>
@@ -271,10 +271,10 @@
     <div class="col-md-4 col-lg-2">
         <a href="{{ route('attractions') }}" class="related-category">
             <div class="card text-center">
-                <img src="/placeholder.svg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
+                <img src="images/Attraction.jpeg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
                 <div class="card-body">
                     <div class="category-icon-large attractions mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <i class="fas fa-map-marker-alt fa-2x text-white"></i>
                     </div>
                     <h5 class="card-title">Attractions</h5>
                 </div>
@@ -282,6 +282,7 @@
         </a>
     </div>
 @endsection
+
 
 @section('additional_js')
 <script>

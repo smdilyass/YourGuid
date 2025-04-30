@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -24,9 +26,16 @@ class AuthController extends Controller
 
         // Attempt to log in
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
+
             $request->session()->regenerate();
-            // Redirect to intended page or home
-            return redirect()->intended('/');
+
+            // Check if user is admin and redirect accordingly
+            
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('home');
+            }
         }
 
         // Failure — redirect back with error
@@ -42,6 +51,28 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');  // or wherever
+    }
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+    public function register(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+
+Auth::login($user);
+
+        return redirect()->route('home');
     }
 
 }

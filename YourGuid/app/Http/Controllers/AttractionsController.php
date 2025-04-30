@@ -13,7 +13,17 @@ class AttractionsController extends Controller
      */
     public function index()
     {
-        //
+        // Example attractions locations data
+        $attractions = [
+            ['name' => 'Sahara Desert', 'city' => 'Erg Chebbi', 'lat' => 31.143, 'lng' => -4.012],
+            ['name' => 'Atlas Mountains', 'city' => 'High Atlas', 'lat' => 31.045, 'lng' => -7.863],
+            ['name' => 'Jemaa el-Fnaa', 'city' => 'Marrakech', 'lat' => 31.625, 'lng' => -7.989],
+            ['name' => 'Kasbah of the Udayas', 'city' => 'Rabat', 'lat' => 34.020, 'lng' => -6.841],
+            ['name' => 'Chefchaouen', 'city' => 'Chefchaouen', 'lat' => 35.171, 'lng' => -5.269],
+            ['name' => 'Essaouira', 'city' => 'Essaouira', 'lat' => 31.508, 'lng' => -9.759],
+        ];
+
+        return view('categories.attractions', ['attractions' => $attractions]);
     }
 
     /**

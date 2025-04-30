@@ -1,11 +1,16 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Admin\UserController;
+// use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryItemController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+
+use App\Http\Controllers\AuthController as ControllersAuthController;
+
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +23,11 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 |
 */
 
+use App\Http\Controllers\HomeController;
+use App\Models\CategoryItem;
+
 // Main Pages
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
@@ -44,6 +50,12 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/logout', function () {
+    return view('auth.logout');
+})->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 // Categories
 Route::get('/transport', function () {
     return view('categories.transport');
@@ -64,6 +76,11 @@ Route::get('/culture', function () {
 Route::get('/attractions', function () {
     return view('categories.attractions');
 })->name('attractions');
+
+// Route::get('/show',function(){
+//     return view('categories.show');
+// })->name('show');
+
 
 // Stadium Details
 Route::get('/stadiums/casablanca', function () {
@@ -91,19 +108,6 @@ Route::get('/news/casablanca-stadium-design', function () {
     return view('news-detail');
 })->name('news.casablanca-stadium-design');
 
-// Placeholder Image Generator
-Route::get('/placeholder.svg', function () {
-    $width = request()->query('width', 300);
-    $height = request()->query('height', 200);
-    $text = request()->query('text', 'Placeholder');
-    
-    $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'">
-        <rect width="100%" height="100%" fill="#198754" />
-        <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">'.$text.'</text>
-    </svg>';
-    
-    return response($svg)->header('Content-Type', 'image/svg+xml');
-});
 
 // API Endpoints
 Route::get('/api/stadiums', function () {
@@ -125,18 +129,26 @@ Route::get('/api/matches', function () {
 });
 
 // Routes Admin
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     // Dashboard
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
-    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     // Gestion des utilisateurs
     Route::resource('users', UserController::class);
-    
+
     // Gestion des catégories
     Route::resource('categories', CategoryController::class);
+    Route::post('categories/create', [CategoryController::class, 'create'])->name('categories.create');
     
+
     // Gestion des éléments de catégorie
     Route::resource('categories.items', CategoryItemController::class)->shallow();
+    Route::get('/categories/items/index', [CategoryItemController::class, 'index'])->name('categories.items.create.index');
+    Route::post('/categories/items/update', [CategoryItemController::class, 'update'])->name('categories.items.update');
+    Route::delete('/categories/items/delete', [CategoryItemController::class, 'delete'])->name('categories.items.delete');
+    Route::get('admin/categories/{category}/items', [CategoryItemController::class, 'index'])
+     ->name('admin.categories.items.index');
 });
 
-
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');

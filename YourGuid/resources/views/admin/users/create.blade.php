@@ -44,18 +44,17 @@
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                </div>
-                
-                <div class="mb-4">
+                </div>               
+                <div class="mb-4">                
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" value="1" {{ old('is_admin') ? 'checked' : '' }}>
+                        
                         <label class="form-check-label" for="is_admin">
                             Administrateur
                         </label>
                         <div class="form-text">Les administrateurs ont accès au tableau de bord et à toutes les fonctionnalités d'administration.</div>
                     </div>
-                </div>
-                
+                </div>                
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save me-1"></i> Enregistrer

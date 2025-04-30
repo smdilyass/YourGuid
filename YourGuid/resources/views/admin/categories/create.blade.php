@@ -54,21 +54,5 @@
     </div>
 </div>
 
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const iconInput = document.getElementById('icon');
-        const iconPreview = document.getElementById('icon-preview');
-        
-        iconInput.addEventListener('input', function() {
-            const iconClass = this.value.trim();
-            if (iconClass) {
-                iconPreview.className = iconClass;
-            } else {
-                iconPreview.className = 'fas fa-folder';
-            }
-        });
-    });
-</script>
-@endsection
+
 @endsection

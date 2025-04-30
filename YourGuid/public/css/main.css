@@ -3,7 +3,7 @@
 /* General Styles */
 body {
     font-family: "Inter", sans-serif;
-    padding-top: 60px; /* Space for fixed countdown timer */
+    padding-top: 1px; /* Space for fixed countdown timer */
   }
   
   .object-fit-cover {
@@ -11,33 +11,48 @@ body {
   }
   
   /* Countdown Timer */
-  .countdown-timer {
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 1000;
-  }
-  
-  .countdown-box {
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.375rem;
-    width: 3.5rem;
-    font-family: monospace;
-    font-size: 1.25rem;
-    text-align: center;
-  }
-  
-  .countdown-label {
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-  }
-  
+/* container stuck top‑right */
+.countdown-timer {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* flex wrapper for the pills */
+.countdown-inner {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* each pill */
+.countdown-segment {
+  background-color: rgba(220, 53, 69, 0.7);     /* Bootstrap danger red */
+  color: #fff;
+  border-radius: 0.375rem;       /* rounded corners */
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  min-width: 3rem;
+}
+
+/* the number */
+.countdown-value {
+  font-family: monospace;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* the label underneath */
+.countdown-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  line-height: 1;
+}
+
   /* Header */
   .header-bg {
-    background: linear-gradient(to right, #2ab03c, #dc3545);
+    background: linear-gradient(to right, #921818, #dc3545);
     padding-top: 4rem;
   }
   
@@ -310,8 +325,8 @@ body {
   
   /* Category Icons */
   .category-icon-large {
-    width: 80px; /* Increased from 60px */
-    height: 80px; /* Increased from 60px */
+    width: 80px;
+    height: 80px; 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -389,5 +404,43 @@ body {
       height: 50vh;
     }
   }
+
+  #stadium-map {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Navbar link hover star */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: rgb(33, 169, 83) !important;
+    /* Bootstrap warning color */
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+    content: "\f005";
+    /* Font Awesome star unicode */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    color: rgb(33, 169, 83);
+    font-size: 0.8rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link::after {
+    opacity: 0;
+}
   
   

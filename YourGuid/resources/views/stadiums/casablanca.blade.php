@@ -151,7 +151,7 @@
                         
                         <div class="spec-item">
                             <div class="spec-icon text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                <i class="fas fa-users fa-lg"></i>
                             </div>
                             <div>
                                 <p class="fw-bold mb-0">Capacity</p>
@@ -161,7 +161,7 @@
                         
                         <div class="spec-item">
                             <div class="spec-icon text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                <i class="fas fa-map-marker-alt fa-lg"></i>
                             </div>
                             <div>
                                 <p class="fw-bold mb-0">Location</p>
@@ -171,7 +171,7 @@
                         
                         <div class="spec-item">
                             <div class="spec-icon text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <i class="fas fa-clock fa-lg"></i>
                             </div>
                             <div>
                                 <p class="fw-bold mb-0">Construction Period</p>
@@ -181,7 +181,7 @@
                         
                         <div class="spec-item">
                             <div class="spec-icon text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                                <i class="fas fa-leaf fa-lg"></i>
                             </div>
                             <div>
                                 <p class="fw-bold mb-0">Playing Surface</p>
@@ -191,7 +191,7 @@
                         
                         <div class="spec-item">
                             <div class="spec-icon text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M2 12v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8"></path><path d="M2 12v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"></path></svg>
+                                <i class="fas fa-umbrella-beach fa-lg"></i>
                             </div>
                             <div>
                                 <p class="fw-bold mb-0">Roof</p>
@@ -288,7 +288,7 @@
                 <img src="/placeholder.svg?height=400&width=1200&text=360°+Panorama+View" alt="360° Panorama View" class="w-100 h-100 object-fit-cover">
                 <div class="position-absolute top-50 start-50 translate-middle">
                     <button class="btn btn-success btn-lg rounded-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <i class="fas fa-play fa-lg"></i>
                     </button>
                 </div>
             </div>
@@ -304,7 +304,7 @@
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 text-center">
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        <i class="fas fa-utensils fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">Food & Beverage</h5>
                     <p class="small">120+ concession stands featuring local and international cuisine</p>
@@ -312,7 +312,7 @@
                 
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        <i class="fas fa-couch fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">VIP Lounges</h5>
                     <p class="small">Premium hospitality areas with exclusive services</p>
@@ -320,7 +320,7 @@
                 
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                        <i class="fas fa-ambulance fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">Medical Facilities</h5>
                     <p class="small">State-of-the-art medical centers throughout the stadium</p>
@@ -328,7 +328,7 @@
                 
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <i class="fas fa-child fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">Family Areas</h5>
                     <p class="small">Dedicated sections for families with children's activities</p>
@@ -336,7 +336,7 @@
                 
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+                        <i class="fas fa-info-circle fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">Information Points</h5>
                     <p class="small">Multilingual staff to assist visitors throughout the venue</p>
@@ -344,7 +344,7 @@
                 
                 <div class="col">
                     <div class="facility-icon mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M15.6 11.6L22 7v10l-6.4-4.5v-1zM4 5h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2z"></path></svg>
+                        <i class="fas fa-tv fa-2x text-success"></i>
                     </div>
                     <h5 class="fw-bold">Giant Screens</h5>
                     <p class="small">Four 200m² HD screens visible from all seats</p>
