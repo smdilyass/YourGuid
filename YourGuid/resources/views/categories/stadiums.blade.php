@@ -8,20 +8,20 @@
 
 @section('content')
 
-    <!-- Introduction -->
+    <!-- Featured Stadiums -->
     <section class="mb-5">
-        <h2 class="section-title">Morocco's World Cup Venues</h2>
-        <div class="row">
-            <div class="col-md-8">
-                <p class="lead">Morocco is preparing to host the 2030 FIFA World Cup with a collection of world-class stadiums across the country.</p>
-                <p>From newly constructed architectural marvels to renovated historic venues, these stadiums will provide the perfect stage for the world's greatest football tournament. Each stadium has been designed with sustainability, accessibility, and fan experience in mind.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="card info-card">
-                    <div class="card-body bg-light">
-                        <h5 class="card-title">Stadium Facts</h5>
-                        <ul class="mb-0">
-                            <li>6 host cities across Morocco</li>
+        <h2 class="section-title">Featured Stadiums</h2>
+        <div class="row g-4">
+            @foreach($items as $item)
+                <div class="col-md-6">
+                    <div class="card info-card h-100">
+                        @if($item->image)
+                            <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->name }}">
+                        @else
+                            <img src="/placeholder.svg?height=300&width=600&text={{ urlencode($item->name) }}" class="card-img-top" alt="{{ $item->name }}">
+                        @endif
+                        <div class="card-body">
+                            <h3 class="card-title h5">{{ $item->name }}</h3>
                             <li>8 stadiums with capacities from 35,000 to 90,000</li>
                             <li>All stadiums meet FIFA's sustainability standards</li>
                             <li>Accessible facilities for all spectators</li>
@@ -302,13 +302,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize the map
         var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
-
-
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
         // Stadiums data (you can later fetch this from Laravel)
         const stadiums = [
             { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
