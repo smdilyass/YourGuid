@@ -82,7 +82,7 @@
         </div>
         
         <div class="map-container mb-3" id="hotel-map">
-            {{-- @include('partials.leaflet-map', ['locations' => $hotels]) --}}
+            {{-- @include('partials.leaflet-map', ['locations' => $items]) --}}
         </div>
         <p class="text-muted">Interactive map showing hotel locations across Morocco's World Cup host cities.</p>
     </section>
@@ -91,95 +91,21 @@
     <section class="mb-5">
         <h2 class="section-title">Featured Accommodations</h2>
         <div class="row g-4">
-            <!-- Luxury Hotels -->
+            @foreach($items as $item)
             <div class="col-md-6 col-lg-4">
                 <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=50&width=50" class="card-img-top" alt="Luxury Hotels in Morocco">
+              <img src="{{ asset('storage/'.$item->image) }}" class="card-img-top" alt="{{ $item->name }}">
                     <div class="card-body">
-                        <h3 class="card-title h5">Luxury Hotels</h3>
-                        <p class="card-text">Morocco's luxury hotels offer world-class amenities, exceptional service, and stunning architecture. Many feature traditional Moroccan design elements combined with modern luxury, providing a truly unique experience.</p>
+                        <h3 class="card-title h5">{{ $item->name }}</h3>
+                        <p class="card-text">{{ $item->short_description }}</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-success">Premium</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
+                            <span class="badge bg-success">{{ $item->price_category ?? 'Premium' }}</span>
+                            <a href="{{ route('categories.show', $item->slug) }}" class="btn btn-outline-success">View Options</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Traditional Riads -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=300&width=600&text=Traditional+Riads" class="card-img-top" alt="Traditional Riads in Morocco">
-                    <div class="card-body">
-                        <h3 class="card-title h5">Traditional Riads</h3>
-                        <p class="card-text">Experience authentic Moroccan hospitality in a traditional riad. These historic houses with interior courtyards and gardens offer a peaceful retreat in the heart of Morocco's bustling medinas.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-primary">Authentic</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Boutique Hotels -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=300&width=600&text=Boutique+Hotels" class="card-img-top" alt="Boutique Hotels in Morocco">
-                    <div class="card-body">
-                        <h3 class="card-title h5">Boutique Hotels</h3>
-                        <p class="card-text">Morocco's boutique hotels offer unique character, personalized service, and stylish design. Often located in historic buildings or scenic locations, they provide an intimate and memorable stay.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-info">Stylish</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vacation Rentals -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=300&width=600&text=Vacation+Rentals" class="card-img-top" alt="Vacation Rentals in Morocco">
-                    <div class="card-body">
-                        <h3 class="card-title h5">Vacation Rentals</h3>
-                        <p class="card-text">For groups or families, vacation rentals offer space, privacy, and the comforts of home. Options range from modern apartments in city centers to traditional houses in historic neighborhoods.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-warning">Family-Friendly</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Budget Accommodations -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=300&width=600&text=Budget+Accommodations" class="card-img-top" alt="Budget Accommodations in Morocco">
-                    <div class="card-body">
-                        <h3 class="card-title h5">Budget Accommodations</h3>
-                        <p class="card-text">Travelers on a budget will find plenty of affordable options including hostels, guesthouses, and budget hotels. Many offer comfortable accommodations with basic amenities at reasonable prices.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-secondary">Economical</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fan Villages -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card info-card h-100">
-                    <img src="images/hotel.jpg?height=300&width=600&text=Fan+Villages" class="card-img-top" alt="Fan Villages in Morocco">
-                    <div class="card-body">
-                        <h3 class="card-title h5">Fan Villages</h3>
-                        <p class="card-text">Special accommodation villages will be set up for the World Cup, offering affordable options and a festive atmosphere. These villages will feature amenities like food courts, entertainment, and transport to stadiums.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="badge bg-danger">World Cup Special</span>
-                            <a href="#" class="btn btn-outline-success">View Options</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
