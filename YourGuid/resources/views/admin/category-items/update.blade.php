@@ -9,6 +9,7 @@
             <h1 class="h3">Modifier un élément</h1>
             <h2 class="h5 text-muted">
                 @if ($category->icon)
+                    <img src="{{ asset('storage/' . $category->icon) }}" alt="Icon" class="me-2" style="height: 24px;">
                 @endif
                 {{ $category->name }} / {{ $item->name }}
             </h2>
@@ -20,7 +21,7 @@
     
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.categories.items.update', [$category, $item]) }}" method="GET" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.categories.items.update', $item) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 
@@ -33,7 +34,7 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3" required>{{ old('description', $item->description) }}</textarea>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description', $item->description) }}</textarea>
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +46,11 @@
                     
                     @if ($item->image)
                         <div class="mb-2">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="img-thumbnail" style="max-height: 200px;">
+                            @if (file_exists(public_path('storage/' . $item->image)))
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="img-thumbnail" style="max-height: 200px;">
+                            @else
+                                <img src="{{ asset('images/fallback-image.png') }}" alt="Fallback Image" class="img-thumbnail" style="max-height: 200px;">
+                            @endif
                         </div>
                     @endif
                     
