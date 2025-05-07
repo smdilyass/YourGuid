@@ -6,8 +6,8 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3">Gestion des catégories</h1>
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
-            <i class="fas fa-eye me-1"></i> Nouvelle catégorie
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-success">
+            <i class="fas fa-plus me-1"></i> Nouvelle catégorie
         </a>
     </div>
     
@@ -42,7 +42,7 @@
                                 <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="{{ route('admin.categories.items.index', $category) }}" class="btn btn-sm btn-outline-info btn-icon" title="Voir les éléments">
+                                        <a href="{{ route('admin.categories.items.index', $category) }}" method="GET" class="btn btn-sm btn-outline-info btn-icon" title="Voir les éléments">
                                             <i class="fas fa-list"></i>
                                         </a>
                                         
