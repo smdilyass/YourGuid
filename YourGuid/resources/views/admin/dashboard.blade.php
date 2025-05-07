@@ -12,17 +12,17 @@
     <div class="row g-3">
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body py-3">
+                <div class="card-body bg-success py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="card-title text-muted mb-0">Utilisateurs</h6>
                             <h2 class="mt-2 mb-0">{{ $stats['users'] ?? 0 }}</h2>
                         </div>
-                        <div class="stats-icon bg-light rounded-circle p-3 text-primary">
+                        <div class="stats-icon bg-success rounded-circle p-3 text-danger">
                             <i class="fas fa-users"></i>
                         </div>
                     </div>
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-primary mt-3">
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-danger mt-3">
                         Voir tous <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -31,13 +31,13 @@
         
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body py-3">
+                <div class="card-body bg-danger py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="card-title text-muted mb-0">Catégories</h6>
                             <h2 class="mt-2 mb-0">{{ $stats['categories'] ?? 0 }}</h2>
                         </div>
-                        <div class="stats-icon bg-light rounded-circle p-3 text-success">
+                        <div class="stats-icon bg-darker rounded-circle p-3 text-success">
                             <i class="fas fa-folder"></i>
                         </div>
                     </div>
@@ -50,17 +50,17 @@
         
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body py-3">
+                <div class="card-body bg-success py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="card-title text-muted mb-0">Éléments</h6>
                             <h2 class="mt-2 mb-0">{{ $stats['items'] ?? 0 }}</h2>
                         </div>
-                        <div class="stats-icon bg-light rounded-circle p-3 text-warning">
+                        <div class="stats-icon bg-success rounded-circle p-3 text-danger">
                             <i class="fas fa-list"></i>
                         </div>
                     </div>
-                    <a href="{{ route('admin.categories.index') }}" class="btn btn-sm btn-outline-warning mt-3">
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-sm btn-outline-danger mt-3">
                         Gérer <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -71,17 +71,17 @@
     <div class="row g-3 mt-1">
         <!-- Latest Users -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
+            <div class="card border-0 bg-success shadow-sm">
+                <div class="card-header bg-success d-flex justify-content-between align-items-center py-2">
                     <h5 class="card-title mb-0">Derniers utilisateurs</h5>
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-primary">
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-danger">
                         Voir tous
                     </a>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light">
+                    <div class="table-responsive ">
+                        <table class="table table-hover  align-middle mb-0">
+                            <thead class="table-success">
                                 <tr>
                                     <th class="py-2">Nom</th>
                                     <th class="py-2">Email</th>
@@ -92,16 +92,16 @@
                             <tbody>
                                 @forelse ($latestUsers as $user)
                                     <tr>
-                                        <td class="py-2">{{ $user->name }}</td>
-                                        <td class="py-2">{{ $user->email }}</td>
-                                        <td class="py-2">
+                                        <td class="py-2 bg-success">{{ $user->name }}</td>
+                                        <td class="py-2 bg-danger">{{ $user->email }}</td>
+                                        <td class="py-2 bg-success">
                                             @if ($user->is_admin)
-                                                <span class="badge bg-primary">Admin</span>
+                                                <span class="badge bg-danger"><i class="fas fa-user-cog me-1"></i>Admin</span>
                                             @else
-                                                <span class="badge bg-secondary">Utilisateur</span>
+                                                <span class="badge bg-primary"><i class="fas fa-user me-1"></i>Utilisateur</span>
                                             @endif
                                         </td>
-                                        <td class="py-2">{{ $user->created_at->format('d/m/Y') }}</td>
+                                        <td class="py-2 bg-success">{{ $user->created_at->format('d/m/Y') }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -118,16 +118,16 @@
         <!-- Latest Categories -->
         <div class="col-md-6">
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
+                <div class="card-header bg-success d-flex justify-content-between align-items-center py-2">
                     <h5 class="card-title mb-0">Dernières catégories</h5>
-                    <a href="{{ route('admin.categories.index') }}" class="btn btn-sm btn-outline-primary">
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-sm btn-outline-danger">
                         Voir toutes
                     </a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light">
+                            <thead class="table-success">
                                 <tr>
                                     <th class="py-2">Nom</th>
                                     <th class="py-2">Slug</th>
@@ -137,14 +137,14 @@
                             <tbody>
                                 @forelse ($latestCategories as $category)
                                     <tr>
-                                        <td class="py-2">
+                                        <td class="py-2 bg-danger">
                                             @if ($category->icon)
                                                 <i class="{{ $category->icon }} me-1"></i>
                                             @endif
                                             {{ $category->name }}
                                         </td>
-                                        <td class="py-2">{{ $category->slug }}</td>
-                                        <td class="py-2">{{ $category->created_at->format('d/m/Y') }}</td>
+                                        <td class="py-2 bg-success">{{ $category->slug }}</td>
+                                        <td class="py-2 bg-danger">{{ $category->created_at->format('d/m/Y') }}</td>
                                     </tr>
                                 @empty
                                     <tr>
