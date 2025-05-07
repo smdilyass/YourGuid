@@ -15,13 +15,13 @@
             </h2>
         </div>
         <div class="d-flex gap-2">
-            <a href="{{ route('admin.categories.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('admin.categories.index' ) }} " class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-1"></i> Retour aux catégories
             </a>
-            <a href="{{ route('admin.categories.items.create', $category) }}" class="btn btn-primary">
+            <a href="{{ route('admin.categories.items.create', $category) }}" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i> Nouvel élément
             </a>
-        </div>
+        </div> 
     </div>
     
     <div class="card">
@@ -30,7 +30,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>id</th>
                             <th>Image</th>
                             <th>Nom</th>
                             <th>Slug</th>
@@ -56,13 +56,13 @@
                                 <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>   
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="{{ route('admin.categories.items.update', [$category, $item]) }}" class="btn btn-sm btn-outline-primary btn-icon" title="Modifier">
+                                        <a href="{{ route('admin.categories.items.edit',  $item) }}" class="btn btn-sm btn-outline-primary btn-icon" title="Modifier">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        
-                                        <form action="{{ route('admin.categories.items.delete', [$category, $item]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                        <form action="{{ route('admin.categories.items.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="hidden" name="item_id" value="{{ $item->id }}">
                                             <button type="submit" class="btn btn-sm btn-outline-danger btn-icon" title="Supprimer">
                                                 <i class="fas fa-trash"></i>
                                             </button>
