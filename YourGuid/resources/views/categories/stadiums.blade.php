@@ -8,20 +8,20 @@
 
 @section('content')
 
-    <!-- Featured Stadiums -->
+    <!-- Introduction -->
     <section class="mb-5">
-        <h2 class="section-title">Featured Stadiums</h2>
-        <div class="row g-4">
-            @foreach($items as $item)
-                <div class="col-md-6">
-                    <div class="card info-card h-100">
-                        @if($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->name }}">
-                        @else
-                            <img src="/placeholder.svg?height=300&width=600&text={{ urlencode($item->name) }}" class="card-img-top" alt="{{ $item->name }}">
-                        @endif
-                        <div class="card-body">
-                            <h3 class="card-title h5">{{ $item->name }}</h3>
+        <h2 class="section-title">Morocco's World Cup Venues</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead">Morocco is preparing to host the 2030 FIFA World Cup with a collection of world-class stadiums across the country.</p>
+                <p>From newly constructed architectural marvels to renovated historic venues, these stadiums will provide the perfect stage for the world's greatest football tournament. Each stadium has been designed with sustainability, accessibility, and fan experience in mind.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card info-card">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Stadium Facts</h5>
+                        <ul class="mb-0">
+                            <li>6 host cities across Morocco</li>
                             <li>8 stadiums with capacities from 35,000 to 90,000</li>
                             <li>All stadiums meet FIFA's sustainability standards</li>
                             <li>Accessible facilities for all spectators</li>
@@ -53,89 +53,36 @@
     <section class="mb-5">
         <h2 class="section-title">Featured Stadiums</h2>
         <div class="row g-4">
-            <!-- Casablanca Grand Stadium -->
-            <div class="col-md-6">
-                <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Casablanca+Grand+Stadium" class="card-img-top" alt="Casablanca Grand Stadium">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="card-title h5">Casablanca Grand Stadium</h3>
-                            <span class="badge bg-success">Capacity: 90,000</span>
-                        </div>
-                        <p class="card-text">The crown jewel of Morocco's World Cup venues, this state-of-the-art stadium in Casablanca will host the opening match and the final. With its distinctive design inspired by traditional Moroccan architecture, it represents the perfect blend of cultural heritage and modern engineering.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div>
-                                <span class="badge bg-primary me-1">Opening Match</span>
-                                <span class="badge bg-danger">Final</span>
+            @foreach($items as $item)
+                <div class="col-md-6">
+                    <div class="card info-card h-100">
+                        @if($item->image)
+                            <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->name }}">
+                        @else
+                            <img src="/placeholder.svg?height=300&width=600&text={{ urlencode($item->name) }}" class="card-img-top" alt="{{ $item->name }}">
+                        @endif
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h3 class="card-title h5">{{ $item->name }}</h3>
+                                @if(!empty($item->capacity))
+                                    <span class="badge bg-success">Capacity: {{ $item->capacity }}</span>
+                                @endif
                             </div>
-                            <a href="#" class="btn btn-outline-success">View Details</a>
+                            <p class="card-text">{{ $item->description }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                @if(!empty($item->badges))
+                                    <div>
+                                        @foreach($item->badges as $badge)
+                                            <span class="badge bg-primary me-1">{{ $badge }}</span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                                <a href="#" class="btn btn-outline-success">View Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Rabat National Stadium -->
-            <div class="col-md-6">
-                <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Rabat+National+Stadium" class="card-img-top" alt="Rabat National Stadium">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="card-title h5">Rabat National Stadium</h3>
-                            <span class="badge bg-success">Capacity: 70,000</span>
-                        </div>
-                        <p class="card-text">Located in Morocco's capital city, the Rabat National Stadium combines cutting-edge technology with elegant design. The stadium features a retractable roof and is surrounded by extensive green spaces, making it a landmark venue for the tournament.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div>
-                                <span class="badge bg-primary me-1">Group Matches</span>
-                                <span class="badge bg-warning">Semi-Final</span>
-                            </div>
-                            <a href="#" class="btn btn-outline-success">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Marrakech Stadium -->
-            <div class="col-md-6">
-                <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Marrakech+Stadium" class="card-img-top" alt="Marrakech Stadium">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="card-title h5">Marrakech Stadium</h3>
-                            <span class="badge bg-success">Capacity: 65,000</span>
-                        </div>
-                        <p class="card-text">Set against the backdrop of the Atlas Mountains, the Marrakech Stadium is a visual masterpiece. Its façade is inspired by traditional Moroccan patterns, and the stadium is powered by one of the largest solar installations in Africa, making it a model for sustainable sports venues.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div>
-                                <span class="badge bg-primary me-1">Group Matches</span>
-                                <span class="badge bg-info">Quarter-Final</span>
-                            </div>
-                            <a href="#" class="btn btn-outline-success">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Tangier Ibn Battouta Stadium -->
-            <div class="col-md-6">
-                <div class="card info-card h-100">
-                    <img src="/placeholder.svg?height=300&width=600&text=Tangier+Ibn+Battouta+Stadium" class="card-img-top" alt="Tangier Ibn Battouta Stadium">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="card-title h5">Tangier Ibn Battouta Stadium</h3>
-                            <span class="badge bg-success">Capacity: 60,000</span>
-                        </div>
-                        <p class="card-text">Named after the famous Moroccan explorer, this stadium in Tangier offers spectacular views of the Mediterranean Sea. Its unique design resembles a ship's hull, paying homage to the city's maritime history. The stadium features advanced cooling systems and natural ventilation.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div>
-                                <span class="badge bg-primary me-1">Group Matches</span>
-                                <span class="badge bg-info">Round of 16</span>
-                            </div>
-                            <a href="#" class="btn btn-outline-success">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="text-center mt-4">
             <a href="#" class="btn btn-success">View All Stadiums</a>
@@ -239,91 +186,3 @@
         </div>
     </section>
 @endsection
-
-
-@section('related_categories')
-    <div class="col-md-4 col-lg-2">
-        <a href="{{ route('transport') }}" class="related-category">
-            <div class="card text-center">
-                <img src="images/transport-icon.png?height=150&width=300&text=Transport" class="card-img-top" alt="Transport">
-                <div class="card-body">
-                    <div class="category-icon-large transport mx-auto">
-                        <i class="fas fa-bus fa-2x text-white"></i>
-                    </div>
-                    <h5 class="card-title">Transport</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-md-4 col-lg-2">
-        <a href="{{ route('stadiums') }}" class="related-category">
-            <div class="card text-center">
-                <img src="images/stadium.avif?height=150&width=300&text=Stadiums" class="card-img-top" alt="Stadiums">
-                <div class="card-body">
-                    <div class="category-icon-large stadiums mx-auto">
-                        <i class="fas fa-home fa-2x text-white"></i>
-                    </div>
-                    <h5 class="card-title">Stadiums</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-md-4 col-lg-2">
-        <a href="{{ route('culture') }}" class="related-category">
-            <div class="card text-center">
-                <img src="images/culture.jpg?height=150&width=300&text=Culture" class="card-img-top" alt="Culture">
-                <div class="card-body">
-                    <div class="category-icon-large culture mx-auto">
-                        <i class="fas fa-globe fa-2x text-white"></i>
-                    </div>
-                    <h5 class="card-title">Culture</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-md-4 col-lg-2">
-        <a href="{{ route('attractions') }}" class="related-category">
-            <div class="card text-center">
-                <img src="images/Attraction.jpeg?height=150&width=300&text=Attractions" class="card-img-top" alt="Attractions">
-                <div class="card-body">
-                    <div class="category-icon-large attractions mx-auto">
-                        <i class="fas fa-map-marker-alt fa-2x text-white"></i>
-                    </div>
-                    <h5 class="card-title">Attractions</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-@endsection
-
-
-@section('additional_js')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize the map
-        var map = L.map('stadium-map').setView([31.7917, -7.0926], 6);
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-        // Stadiums data (you can later fetch this from Laravel)
-        const stadiums = [
-            { name: 'Stade Mohammed V', city: 'Casablanca', lat: 33.5883, lng: -7.6114 },
-            { name: 'Stade de Marrakech', city: 'Marrakech', lat: 31.6258, lng: -8.0345 },
-            { name: 'Stade Ibn Battouta', city: 'Tanger', lat: 35.7485, lng: -5.8340 },
-            { name: 'Stade Adrar', city: 'Agadir', lat: 30.3928, lng: -9.5479 },
-            { name: 'Complexe Moulay Abdellah', city: 'Rabat', lat: 34.0209, lng: -6.8416 },
-            { name: 'Stade de Fès', city: 'Fès', lat: 34.0274, lng: -5.0078 }
-        ];
-
-        // Add markers to the map
-        stadiums.forEach(stadium => {
-            L.marker([stadium.lat, stadium.lng])
-                .addTo(map)
-                .bindPopup(`<strong>${stadium.name}</strong><br>${stadium.city}`);
-        });
-    });
-</script>
-
-@endsection
-

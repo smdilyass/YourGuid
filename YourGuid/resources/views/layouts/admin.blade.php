@@ -25,25 +25,26 @@
     @yield('additional_css')
 
 </head>
-<body>
+
+<body class="bg-black text-success">
     <div class="d-flex flex-column flex-lg-row min-vh-100">
         <!-- Sidebar -->
-        <aside class="sidebar bg-dark text-white">
-            <div class="sidebar-header p-3 text-center border-bottom">
+        <aside class="sidebar bg-black text-success">
+            <div class="sidebar-header p-3 bg-black text-center border-bottom">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="sidebar-logo mb-2" />
-                <h5 class="mb-0">Admin Panel</h5>
+                <h5 class="mb-0">Admin Dashboard</h5>
             </div>
             <nav class="nav flex-column p-2">
-                <a class="nav-link text-white py-2" href="{{ route('admin.dashboard') }}">
+                <a class="nav-link text-success py-2" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-tachometer-alt me-2"></i> Tableau de bord
                 </a>
-                <a class="nav-link text-white py-2" href="{{ route('admin.users.index') }}">
+                <a class="nav-link  text-success py-2" href="{{ route('admin.users.index') }}">
                     <i class="fas fa-users me-2"></i> Utilisateurs
                 </a>
-                <a class="nav-link text-white py-2" href="{{ route('admin.categories.index') }}">
+                <a class="nav-link text-success py-2" href="{{ route('admin.categories.index') }}">
                     <i class="fas fa-folder me-2"></i> Catégories
                 </a>
-                <a class="nav-link text-white py-2" href="{{ route('admin.categories.index') }}">
+                <a class="nav-link text-success py-2" href="{{ route('admin.categories.index') }}">
                     <i class="fas fa-list me-2"></i> Éléments
                 </a>
             </nav>
@@ -79,10 +80,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Toggle sidebar on mobile
-        document.getElementById('sidebar-toggle')?.addEventListener('click', function() {
+        document.getElementById('sidebar-toggle')?.addEventListener('click', function () {
             document.querySelector('.sidebar').classList.toggle('show-mobile');
         });
     </script>
     @yield('additional_js')
 </body>
+
 </html>

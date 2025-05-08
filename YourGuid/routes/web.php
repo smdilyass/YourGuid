@@ -57,9 +57,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Categories
-Route::get('/transport', function () {
-    return view('categories.transport');
-})->name('transport');
+Route::get('/transport', [CategoriesController::class, 'transport'])->name('transport');
 
 Route::get('/stadiums', function () {
     return view('categories.stadiums');
@@ -73,60 +71,66 @@ Route::get('/culture', function () {
     return view('categories.culture');
 })->name('culture');
 
-Route::get('/attractions', function () {
-    return view('categories.attractions');
-})->name('attractions');
+use App\Http\Controllers\CategoriesController;
 
-// Route::get('/show',function(){
-//     return view('categories.show');
-// })->name('show');
+Route::get('/attractions', [CategoriesController::class, 'attractions'])->name('attractions');
+Route::get('/hotels', [CategoriesController::class, 'hotels'])->name('hotels');
 
 
-// Stadium Details
-Route::get('/stadiums/casablanca', function () {
-    return view('stadiums.casablanca');
-})->name('stadiums.casablanca');
+Route::get('/show',function(){
+    return view('categories.show');
+})->name('show');
 
-Route::get('/stadiums/casablanca/map', function () {
-    return view('stadiums.casablanca-map');
-})->name('stadiums.casablanca.map');
-
-Route::get('/stadiums/rabat', function () {
-    return view('stadiums.rabat');
-})->name('stadiums.rabat');
-
-Route::get('/stadiums/marrakech', function () {
-    return view('stadiums.marrakech');
-})->name('stadiums.marrakech');
-
-Route::get('/stadiums/tangier', function () {
-    return view('stadiums.tangier');
-})->name('stadiums.tangier');
-
-// News Detail
-Route::get('/news/casablanca-stadium-design', function () {
-    return view('news-detail');
-})->name('news.casablanca-stadium-design');
+Route::get('/categories/{id}', [CategoriesController::class, 'show'])->name('categories.show');
 
 
-// API Endpoints
-Route::get('/api/stadiums', function () {
-    // Return stadium data
-    return response()->json([
-        'stadiums' => [
-            // Stadium data would go here
-        ]
-    ]);
-});
+// // Stadium Details
+// Route::get('/stadiums/casablanca', function () {
+//     return view('stadiums.casablanca');
+// })->name('stadiums.casablanca');
 
-Route::get('/api/matches', function () {
-    // Return match data
-    return response()->json([
-        'matches' => [
-            // Match data would go here
-        ]
-    ]);
-});
+// Route::get('/stadiums/casablanca/map', function () {
+//     return view('stadiums.casablanca-map');
+// })->name('stadiums.casablanca.map');
+
+// Route::get('/stadiums/rabat', function () {
+//     return view('stadiums.rabat');
+// })->name('stadiums.rabat');
+
+// Route::get('/stadiums/marrakech', function () {
+//     return view('stadiums.marrakech');
+// })->name('stadiums.marrakech');
+
+// Route::get('/stadiums/tangier', function () {
+//     return view('stadiums.tangier');
+// })->name('stadiums.tangier');
+
+// // News Detail
+// Route::get('/news/casablanca-stadium-design', function () {
+//     return view('news-detail');
+// })->name('news.casablanca-stadium-design');
+
+
+// // API Endpoints
+// Route::get('/api/stadiums', function () {
+//     // Return stadium data
+//     return response()->json([
+//         'stadiums' => [
+//             // Stadium data would go here
+//         ]
+//     ]);
+// });
+
+// Route::get('/api/matches', function () {
+//     // Return match data
+//     return response()->json([
+//         'matches' => [
+//             // Match data would go here
+//         ]
+//     ]);
+// });
+Route::get('/categories/{slug}', [CategoriesController::class, 'showCategoryWithItems']);
+
 
 // Routes Admin
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -142,12 +146,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     
 
     // Gestion des éléments de catégorie
-    Route::resource('categories.items', CategoryItemController::class)->shallow();
-    Route::get('/categories/items/index', [CategoryItemController::class, 'index'])->name('categories.items.create.index');
-    Route::post('/categories/items/update', [CategoryItemController::class, 'update'])->name('categories.items.update');
-    Route::delete('/categories/items/delete', [CategoryItemController::class, 'delete'])->name('categories.items.delete');
-    Route::get('admin/categories/{category}/items', [CategoryItemController::class, 'index'])
-     ->name('admin.categories.items.index');
+    Route::resource('categories.items', CategoryItemController::class)
+    ->shallow()
+    ->names([
+        'index'   => 'categories.items.index',
+        'create'  => 'categories.items.create',
+        'store'   => 'categories.items.store',
+        'edit'    => 'categories.items.edit',
+        'update'  => 'categories.items.update',
+        'destroy' => 'categories.items.destroy',
+    ]);
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');

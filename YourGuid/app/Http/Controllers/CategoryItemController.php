@@ -2,63 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\CategoryItem;
 use App\Http\Requests\StoreCategoryItemRequest;
 use App\Http\Requests\UpdateCategoryItemRequest;
 
-
-
 class CategoryItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * Show all category items.
-     */
-    public function index($category)
+    // GET /admin/categories/{category}/items
+    public function index(Category $category)
     {
-        // Get all category items for the given category from the database
-        $categoryItems = CategoryItem::where('category_id', $category->id)->get();
+        // eager-load items and paginate if you like
+        $items = $category->items()->paginate(15);
 
-        // Return the category items view with the data and category
-        return view('admin.category-items.index', compact('categoryItems', 'category'));
+        return view('admin.category-items.index', compact('category', 'items'));
     }
 
-    public function create($category)
+    // GET /admin/categories/{category}/items/create
+    public function create(Category $category)
     {
-        // Return the create category item view with the category
         return view('admin.category-items.create', compact('category'));
     }
 
-    public function update($category, $id)
+    // POST /admin/categories/{category}/items
+    public function store(StoreCategoryItemRequest $request, Category $category)
     {
-        // Find the category item by id or fail with 404
-        $categoryItem = CategoryItem::findOrFail($id);
+        $data = $request->validated();
+        $data['category_id'] = $category->id;
+        CategoryItem::create($data);
 
-        // Return the update category item view with the data and category
-        return view('admin.category-items.update', compact('categoryItem', 'category'));
-    }
-    public function delete($id)
-    {   
-        // Find the category item by id or fail with 404
-        $categoryItem = CategoryItem::findOrFail($id);
-
-        // Delete the category item
-        $categoryItem->delete();
-
-        // Redirect to the category items index page
-        return redirect()->route('category_items.index');
+        return redirect()
+            ->route('admin.categories.items.index', $category)
+            ->with('success', 'Élément ajouté avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     * Show a single category item by id.
-     */
-    public function showItem($id)
+    // GET /admin/items/{item}
+    public function show(CategoryItem $item)
     {
-        // Find the category item by id or fail with 404
-        $categoryItem = CategoryItem::findOrFail($id);
+        return view('admin.category-items.show', compact('item'));
+    }
 
-        // Return the category item view with the data
-        return view('category_items.show', compact('categoryItem'));
+    // GET /admin/items/{item}/edit
+    public function edit(CategoryItem $item)
+    {
+        // for the breadcrumbs/menu you may still want its parent:
+        $category = $item->category;
+        return view('admin.category-items.edit', compact('category', 'item'));
+    }
+
+    // PUT/PATCH /admin/items/{item}
+    public function update(UpdateCategoryItemRequest $request, CategoryItem $item)
+    {
+        $item->update($request->validated());
+
+        return redirect()
+            ->route('admin.categories.items.index', $item->category)
+            ->with('success', 'Élément mis à jour avec succès.');
+    }
+
+    // DELETE /admin/items/{item}
+    public function destroy(CategoryItem $item)
+    {
+        $category = $item->category;
+        $item->delete();
+
+        return redirect()
+            ->route('admin.categories.items.index', $category)
+            ->with('success', 'Élément supprimé avec succès.');
     }
 }

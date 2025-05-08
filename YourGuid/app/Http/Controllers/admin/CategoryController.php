@@ -49,6 +49,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'icon' => $request->icon,
+            
         ]);
 
         return redirect()->route('admin.categories.index')

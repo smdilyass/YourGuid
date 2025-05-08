@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CategoryItem;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 use Illuminate\Support\Str;
 
 class CategoryItemController extends Controller
@@ -18,7 +21,7 @@ class CategoryItemController extends Controller
      */
     public function index(Category $category)
     {
-        $items = $category->items()->latest()->paginate(10);
+        $items = $category->items()->latest('created_at')->paginate(10);
         return view('admin.category-items.index', compact('category', 'items'));
     }
 
@@ -37,6 +40,10 @@ class CategoryItemController extends Controller
      * Enregistre un nouvel élément.
      *
      * @param  \Illuminate\Http\Request  $request
+     *     - name: required|string|max:255
+     *     - description: nullable|string
+     *     - image: nullable|image|max:6512
+     *     - details: nullable|array
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -45,15 +52,15 @@ class CategoryItemController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:6512'],
             'details' => ['nullable', 'array'],
         ]);
 
         $item = new CategoryItem([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => Str::slug($request->name) . '-' . uniqid(),
             'description' => $request->description,
-            'details' => $request->details ?? [],
+            'details' => (array) ($request->details ?? []),
         ]);
 
         if ($request->hasFile('image')) {
@@ -76,12 +83,18 @@ class CategoryItemController extends Controller
      */
     public function edit(Category $category, CategoryItem $item)
     {
-        return view('admin.category-items.edit', compact('category', 'item'));
+        return view('admin.category-items.update', compact('category', 'item'));
     }
-
-    /**
-     * Met à jour un élément.
+    /** Validation rules:
+     * - name: required, string, max:255
+     * - description: nullable, string
+     * - image: nullable, image, max:6512
+     * - details: nullable, array
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @param  \App\Models\CategoryItem  $item
+     * @return \Illuminate\Http\RedirectResponse
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
      * @param  \App\Models\CategoryItem  $item
@@ -92,23 +105,24 @@ class CategoryItemController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:6512'],
             'details' => ['nullable', 'array'],
         ]);
 
         $item->name = $request->name;
-        $item->slug = Str::slug($request->name);
+        $item->slug = Str::slug($request->name) . '-' . uniqid();
         $item->description = $request->description;
         $item->details = $request->details ?? [];
 
         if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($item->image) {
-                \Storage::disk('public')->delete($item->image);
+            $path = $request->file('image')->store('category-items', 'public');
+            
+            if ($path && $item->image) {
+                Storage::disk('public')->delete($item->image);
             }
             
-            $path = $request->file('image')->store('category-items', 'public');
             $item->image = $path;
+           
         }
 
         $item->save();
@@ -124,16 +138,16 @@ class CategoryItemController extends Controller
      * @param  \App\Models\CategoryItem  $item
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Category $category, CategoryItem $item)
+    public function destroy(CategoryItem $item)
     {
-        // Supprimer l'image si elle existe
+        $category = $item->category;
         if ($item->image) {
-            \Storage::disk('public')->delete($item->image);
+            Storage::disk('public')->delete($item->image);
         }
-
-        $item->delete();
-
+        $item->delete(); 
+    
         return redirect()->route('admin.categories.items.index', $category)
             ->with('success', 'Élément supprimé avec succès.');
     }
+    
 }

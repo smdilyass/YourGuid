@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Countdown Timer
     const countdownTimer = () => {
       const targetDate = new Date("2030-06-08T00:00:00Z").getTime()
   
@@ -30,19 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
       setInterval(updateTimer, 1000)
     }
   
-    // Initialize countdown
     countdownTimer()
   
-    // Star Navigation
     const centerStar = document.getElementById("center-star")
     const categoryButtons = document.querySelectorAll(".category-btn")
-    let categoriesVisible = false
+    let categoriesVisible = true
   
     centerStar.addEventListener("click", () => {
       categoriesVisible = !categoriesVisible
   
       if (categoriesVisible) {
-        // Show categories with animation
+      
         centerStar.classList.add("active")
         categoryButtons.forEach((button, index) => {
           setTimeout(() => {
